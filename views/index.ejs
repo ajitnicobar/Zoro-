@@ -53,20 +53,28 @@
     <div class="row my-4">
       <span class="display-4 fw-bold fcolor animation_left">EXPLORE PRODUCTS</span>
     </div>
-    <div class="row">
-      <% for (let i = 0; i < product.length; i++) { %>
-        <div class="col-xl-2 col-lg-4 col-sm-6 my-3 lol l277">
-          <a href="/<%= product[i].product_category.toLowerCase() %>" class="text-decoration-none text-light">
-            <div class="card p-0 border border-dark">
-              <img src="/static/images/category/pro_category/<%= product[i].product_image %>" class="card-img-top fit" alt="...">
-              <div class="card-body text-center py-1 bg-black">
-                <h5 class="card-text fcolor"><%= product[i].product_name %></h5>
-              </div>
-            </div>
-          </a>
+   <div class="row">
+  <% for (let i = 0; i < product.length; i++) { %>
+    <div class="col-xl-2 col-lg-4 col-sm-6 my-3 lol l277">
+      <% 
+        // Check if the category is mouse, keyboard, or headphone
+        let categoryLink = product[i].product_category.toLowerCase();
+        if (categoryLink === 'mouse' || categoryLink === 'keyboard' || categoryLink === 'headphone') {
+          categoryLink = 'accessories'; // Change the link to "accessories"
+        }
+      %>
+      <a href="/<%= categoryLink %>" class="text-decoration-none text-light">
+        <div class="card p-0 border border-dark">
+          <img src="/static/images/category/pro_category/<%= product[i].product_image %>" class="card-img-top fit" alt="...">
+          <div class="card-body text-center py-1 bg-black">
+            <h5 class="card-text fcolor"><%= product[i].product_name %></h5>
+          </div>
         </div>
-      <% } %>
+      </a>
     </div>
+  <% } %>
+</div>
+
   </div>
   
   <!-- #########################################  carousel 1 ############################################## -->
